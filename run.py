@@ -77,11 +77,13 @@ key = curses.KEY_RIGHT
 
 # Function to display score on top bar
 def display_score(win, score):
-    h, w = newwin.getmaxyx()
+    h, w = win.getmaxyx()
+    score_text = "Score: {}".format(score)
+    win.addstr(0, (w // 2) - len(score_text) // 2, score_text)
     score = 0
-    win.addstr(0, 0, "Score: " + str(score))
+    display_score(curses.newwin, score)
 
-display_score()
+
 
 # Function to add to score when snake eats the food
 def get_food(score):
